@@ -3,40 +3,40 @@
 var app = require('../..');
 import request from 'supertest';
 
-var newSyllabus;
+var newSyllabuses;
 
 describe('Syllabus API:', function() {
 
-  describe('GET /api/syllabuss', function() {
-    var syllabuss;
+  describe('GET /api/syllabuses', function() {
+    var syllabuses;
 
     beforeEach(function(done) {
       request(app)
-        .get('/api/syllabuss')
+        .get('/api/syllabuses')
         .expect(200)
         .expect('Content-Type', /json/)
         .end((err, res) => {
           if (err) {
             return done(err);
           }
-          syllabuss = res.body;
+          syllabuses = res.body;
           done();
         });
     });
 
     it('should respond with JSON array', function() {
-      syllabuss.should.be.instanceOf(Array);
+      syllabuses.should.be.instanceOf(Array);
     });
 
   });
 
-  describe('POST /api/syllabuss', function() {
+  describe('POST /api/syllabuses', function() {
     beforeEach(function(done) {
       request(app)
-        .post('/api/syllabuss')
+        .post('/api/syllabuses')
         .send({
-          name: 'New Syllabus',
-          info: 'This is the brand new syllabus!!!'
+          name: 'New Syllabuses',
+          info: 'This is the brand new syllabuses!!!'
         })
         .expect(201)
         .expect('Content-Type', /json/)
@@ -49,50 +49,50 @@ describe('Syllabus API:', function() {
         });
     });
 
-    it('should respond with the newly created syllabus', function() {
-      newSyllabus.name.should.equal('New Syllabus');
-      newSyllabus.info.should.equal('This is the brand new syllabus!!!');
+    it('should respond with the newly created syllabuses', function() {
+      newSyllabuses.name.should.equal('New Syllabuses');
+      newSyllabuses.info.should.equal('This is the brand new syllabuses!!!');
     });
 
   });
 
-  describe('GET /api/syllabuss/:id', function() {
-    var syllabus;
+  describe('GET /api/syllabuses/:id', function() {
+    var syllabuses;
 
     beforeEach(function(done) {
       request(app)
-        .get('/api/syllabuss/' + newSyllabus._id)
+        .get('/api/syllabuses/' + newSyllabuses._id)
         .expect(200)
         .expect('Content-Type', /json/)
         .end((err, res) => {
           if (err) {
             return done(err);
           }
-          syllabus = res.body;
+          syllabuses = res.body;
           done();
         });
     });
 
     afterEach(function() {
-      syllabus = {};
+      syllabuses = {};
     });
 
-    it('should respond with the requested syllabus', function() {
-      syllabus.name.should.equal('New Syllabus');
-      syllabus.info.should.equal('This is the brand new syllabus!!!');
+    it('should respond with the requested syllabuses', function() {
+      syllabuses.name.should.equal('New Syllabuses');
+      syllabuses.info.should.equal('This is the brand new syllabuses!!!');
     });
 
   });
 
-  describe('PUT /api/syllabuss/:id', function() {
-    var updatedSyllabus;
+  describe('PUT /api/syllabuses/:id', function() {
+    var updatedSyllabuses;
 
     beforeEach(function(done) {
       request(app)
-        .put('/api/syllabuss/' + newSyllabus._id)
+        .put('/api/syllabuses/' + newSyllabuses._id)
         .send({
-          name: 'Updated Syllabus',
-          info: 'This is the updated syllabus!!!'
+          name: 'Updated Syllabuses',
+          info: 'This is the updated syllabuses!!!'
         })
         .expect(200)
         .expect('Content-Type', /json/)
@@ -100,27 +100,27 @@ describe('Syllabus API:', function() {
           if (err) {
             return done(err);
           }
-          updatedSyllabus = res.body;
+          updatedSyllabuses = res.body;
           done();
         });
     });
 
     afterEach(function() {
-      updatedSyllabus = {};
+      updatedSyllabuses = {};
     });
 
-    it('should respond with the updated syllabus', function() {
-      updatedSyllabus.name.should.equal('Updated Syllabus');
-      updatedSyllabus.info.should.equal('This is the updated syllabus!!!');
+    it('should respond with the updated syllabuses', function() {
+      updatedSyllabuses.name.should.equal('Updated Syllabuses');
+      updatedSyllabuses.info.should.equal('This is the updated syllabuses!!!');
     });
 
   });
 
-  describe('DELETE /api/syllabuss/:id', function() {
+  describe('DELETE /api/syllabuses/:id', function() {
 
     it('should respond with 204 on successful removal', function(done) {
       request(app)
-        .delete('/api/syllabuss/' + newSyllabus._id)
+        .delete('/api/syllabuses/' + newSyllabuses._id)
         .expect(204)
         .end((err, res) => {
           if (err) {
@@ -130,9 +130,9 @@ describe('Syllabus API:', function() {
         });
     });
 
-    it('should respond with 404 when syllabus does not exist', function(done) {
+    it('should respond with 404 when syllabuses does not exist', function(done) {
       request(app)
-        .delete('/api/syllabuss/' + newSyllabus._id)
+        .delete('/api/syllabuses/' + newSyllabuses._id)
         .expect(404)
         .end((err, res) => {
           if (err) {

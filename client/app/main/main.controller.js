@@ -6,11 +6,11 @@ class MainController {
 
   constructor($http, $scope, socket) {
     this.$http = $http;
-    this.awesomeThings = [];
+    this.syllabuses = [];
 
     $http.get('/api/syllabuses').then(response => {
       this.syllabuses = response.data;
-      socket.syncUpdates('thing', this.syllabuses);
+      socket.syncUpdates('syllabuses', this.syllabuses);
     });
 
     $scope.$on('$destroy', function() {
