@@ -54,11 +54,13 @@ Syllabus.find({}).removeAsync()
 User.find({}).removeAsync()
   .then(() => {
     User.createAsync({
+      _id: '569e69cc1ab998358d37667e',
       provider: 'local',
       name: 'Test User',
       email: 'test@example.com',
       password: 'test'
     }, {
+      _id:'569e69cc1ab998358d37667d',
       provider: 'local',
       role: 'admin',
       name: 'Admin',
